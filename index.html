@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Lang Parser JS Sample</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+		<script src="js/translations.js" charset="utf-8" type="text/javascript"></script>
+		<script src="js/lang-parser-0.1.js" charset="utf-8" type="text/javascript"></script>
+		<style type="text/css">
+			/*
+			USERIFY PALETTE:
+				#3498db - Peter river (blau)
+				#e67e22 - Carrot (taronja)
+				#d35400 - Pumpkin (taronja fort)
+				#e74c3c - Alizarin (vermell gay)
+				#1abc9c - Turquoise
+			*/
+			body{
+				text-align: justify;
+			}
+			h1.title-color {
+				color: #27ae60!important;
+				color: #d35400!important; /*new*/
+			}
+			h2.title-color {
+				color: #e67e22!important; /*new*/
+			}
+			.tag-color {
+				color: #3498db;
+				color: #e74c3c; /*new*/
+			}
+			.attribute-color {
+				color: #f39c12;
+				color: #3498db; /*new*/
+			}
+			.atr-value-color {
+				color: #27ae60;
+				color: #e67e22; /*new*/
+			}
+			.body_color{
+				background-color: #1abc9c;
+			}
+			.spacer {
+			    margin-top: 40px;
+			}
+		</style>
+	</head>
+
+	<body class="body_color">
+		<div class="container-fluid">
+    		<div class="jumbotron col-md-8 col-md-offset-2">
+    			<h1 class="title-color">Lang Parser JS Framework</h1>
+    			<p>Sometimes you need to make the translations in client-side, but this could be a tedious work when you need to get element by element and replace all their attributes.</p>
+    			<p>This is the problem that LangParser Javascript Framework (LPF) resolves. <br><strong>LangParser helps you to resolve that tedious work without using other Javascript Frameworks!</strong></p>
+			</div>
+			<div class="jumbotron col-md-8 col-md-offset-2">
+    			<h2 class="title-color">How does it work?</h2>
+    			<section class="spacer">
+    				<h3>The var attribute</h3>
+	    			<p>LPF starts on inlcuding attributes in the elements that you want to translate. It's done by using the <code>dataset</code> property of HMTL5. The elements that will be translated must have the attribute <code>data-lpf-var</code>. The value of this attribute is the same of the key in the translations json file.</p>
+	    			
+	    			<p>This JSON translations example has the key <strong>username-input</strong> with a value <i>Put here the username:</i></p>
+	    			<div class="well well-sm text-right"><span>{ username-input: 'Put here the username' }</span></div>
+					<p>So, the input to translate will have the attribute:</p>
+					<div class="well well-sm text-right">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span>/&gt;</strong>
+					</div>
+				</section>
+
+				<section class="spacer">
+					<h3>The format attribute</h3>
+					<p>This is an optional attribute that allows you to choose an especific output format for the string translated. The attribute is <code>data-lpf-format</code>.The default values are:</p>
+					<div class="well">
+						<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'normal'</span></strong> (or empty)</h4><p>Keeps the original format of the string.</p>
+						<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="normal_attribute_sample" data-lpf-attrs="-"></span></p>
+						<p><strong>Formatted</strong>: <span data-lpf-var="normal_attribute_sample" data-lpf-attrs=""></span></p>
+					</div>
+					<div class="well">
+						<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'upper'</span></strong></h4><p>Converts the string to uppercase letters.</p>
+						<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="upper_attribute_sample" data-lpf-attrs="-"></span></p>
+						<p><strong>Formatted</strong>: <span data-lpf-var="upper_attribute_sample" data-lpf-format="upper"></span></p>
+					</div>
+					<div class="well">
+						<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'lower'</span></strong></h4><p>Converts the string to lowercase letters.</p>
+						<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="lower_attribute_sample" data-lpf-attrs="-"></span></p>
+						<p><strong>Formatted</strong>: <span data-lpf-var="lower_attribute_sample" data-lpf-format="lower"></span></p>
+					</div>
+					<div class="well">
+						<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'cap'</span></strong></h4><p>Converts the string to a capitalized string.</p>
+						<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="cap_attribute_sample" data-lpf-attrs="-"></span></p>
+						<p><strong>Formatted</strong>: <span data-lpf-var="cap_attribute_sample" data-lpf-format="cap"></span></p>
+					</div>
+				</section>
+			</div>
+			<div class="jumbotron col-md-8 col-md-offset-2">
+
+				<div class="well well-sm text-right">TO CONTINUE....</div>
+    			
+    			<!--<div data-lpf-container='forms'>
+					<div class="form-group">
+						<label data-lpf-var="first_label"></label>
+						<input class="form-control" data-lpf-var="username" data-lpf-format="cap" data-lpf-attrs="" type="text"/>
+		        	</div>
+		        	<button class="btn btn-primary" data-lpf-var="the_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('forms');"></button>
+
+					<h2>Clear default attributes</h2>
+	    			<p>"data-lp-attrs='-'"</p>
+	    			<div class="form-group">
+						<label data-lpf-var="first_label"></label>
+						<input class="form-control" data-lpf-var="username" data-lpf-format="cap" data-lpf-attrs="" type="text"/>
+			        </div>
+			        <button class="btn btn-primary" data-lpf-var="the_button" data-lpf-format="cap" data-lpf-attrs="" onclick="changeLanguage('forms');"></button>
+
+			        <div class="form-group">
+						<label data-lpf-var="first_label" data-lpf-str-format="cap" data-lpf-attrs=""></label>
+						<input class="form-control" data-lpf-var="username" data-lpf-format="cap" data-lpf-attrs="" type="text"/>
+			        </div>
+			        <button class="btn btn-primary" data-lpf-var="the_button" data-lpf-format="cap" data-lpf-attrs="" onclick="changeLanguage('forms');"></button>
+		        </div>-->
+	        </div>
+        </div>
+
+        <script type="text/javascript">
+        	var samples = {
+        			'EN': en_sample,
+        			'ES': es_sample
+        		},
+        		currentSample = 'EN';
+
+        	window.onload = function () {
+        		LangParser.setDefaultLanguage(currentSample);
+        		LangParser.translateContent(samples[currentSample]);
+
+        		showLiteralsSamples();
+        	};
+
+        	function changeLanguage(containerName) {
+
+        		if(currentSample === 'EN'){
+        			currentSample = 'ES';
+        		} else {
+        			currentSample = 'EN';
+        		}
+    			LangParser.translateContent(samples[currentSample], containerName);
+    		}
+
+    		function showLiteralsSamples() {
+    			var els = document.getElementsByClassName('original-sample');
+    			
+    			for(var i = 0; i < els.length; i++) {
+    				var name = els[i].dataset.lpfVar;
+    				
+    				if(name) {
+    					els[i].textContent = samples[currentSample][name];
+    				}
+    			}
+    		}
+        </script>
+	</body>
+</html>
