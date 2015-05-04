@@ -47,6 +47,9 @@
 			.spacer {
 			    margin-top: 40px;
 			}
+			ul {
+				list-style-type: none;
+			}
 		</style>
 	</head>
 
@@ -59,8 +62,11 @@
 			</div>
 			<div class="jumbotron col-md-8 col-md-offset-2">
     			<h2 class="title-color">How does it work?</h2>
-    			<section class="spacer">
-    				<h3>The var attribute</h3>
+    			<div class="well text-center" style="color: red;">TODO: the installation....</div>
+			</div>
+			<div class="jumbotron col-md-8 col-md-offset-2">    			
+    			<section>
+    				<h3>The <i>var</i> attribute</h3>
 	    			<p>LPF starts on inlcuding attributes in the elements that you want to translate. It's done by using the <code>dataset</code> property of HMTL5. The elements that will be translated must have the attribute <code>data-lpf-var</code>. The value of this attribute is the same of the key in the translations json file.</p>
 	    			
 	    			<p>This JSON translations example has the key <strong>username-input</strong> with a value <i>Put here the username:</i></p>
@@ -69,9 +75,10 @@
 					<div class="well well-sm text-right">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span>/&gt;</strong>
 					</div>
 				</section>
-
-				<section class="spacer">
-					<h3>The format attribute</h3>
+			</div>
+			<div class="jumbotron col-md-8 col-md-offset-2">
+				<section>
+					<h3>The <i>format</i> attribute</h3>
 					<p>This is an optional attribute that allows you to choose an especific output format for the string translated. The attribute is <code>data-lpf-format</code>.The default values are:</p>
 					<div class="well">
 						<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'normal'</span></strong> (or empty)</h4><p>Keeps the original format of the string.</p>
@@ -93,18 +100,94 @@
 						<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="cap_attribute_sample" data-lpf-attrs="-"></span></p>
 						<p><strong>Formatted</strong>: <span data-lpf-var="cap_attribute_sample" data-lpf-format="cap"></span></p>
 					</div>
+					<p><i><strong>Note:</strong> By default, the option set is normal.</i></p>
+					<p>Otherwise, you can customize you'r own behaviour passing a function in the installation.</p>
+					<div class="well text-center" style="color: red;">TODO: user custom regex....</div>
 				</section>
 			</div>
 			<div class="jumbotron col-md-8 col-md-offset-2">
+				<section>
+    				<h3>The <i>translate</i> attribute</h3>
+	    			<p>This attribute allows you to choose if an element must be translated once or every time you change the page language. If you choose once, LPF only translates the first time, on page loaded. The attribute is called <code>data-lpf-translate</code>. The cases are:</p>
+					
+					<p>This example shows the one time translation using the <i><strong>initial</strong></i> value:</p>
+					<div class="well well-sm">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span> <span class='attribute-color'>data-lpf-translate=</span><span class="atr-value-color">'initital'</span>/&gt;</strong>
+					</div>
 
-				<div class="well well-sm text-right">TO CONTINUE....</div>
+					<p>Otherwise, the <i><strong>always</strong></i> value translates every time:</p>
+					<div class="well well-sm">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span> <span class='attribute-color'>data-lpf-translate=</span><span class="atr-value-color">'always'</span>/&gt;</strong>
+					</div>
+					<p><i><strong>Note:</strong> By default, the option set is always.</i></p>
+				</section>
+			</div>
+
+			<div class="jumbotron col-md-8 col-md-offset-2">
+				<h3>The <i>container</i> attribute</h3>
+    			<div class="well text-center" style="color: red;">TODO: the container attribute....</div>
+			</div>
+			<div class="jumbotron col-md-8 col-md-offset-2">
+
+				<h3>The <i>attrs</i> attribute</h3>
+				<p>Another optional feature is the possibility of setting custom attributes to translate. To make translations in the attributes desired, you can modify the attribute <code>data-lpf-attrs</code>.</p>
+
+				<div class="row">
+					<div class="col-md-6">
+						<p>The default attributes by tag are:</p>
+						<ul>
+							<li><p><strong>INPUT:</strong> <span class='atr-value-color'>t p n v</span>.</p></li>
+							<li><p><strong>A:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><strong>BUTTON:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><strong>LABEL:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><strong>SPAN:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><strong>LI:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><strong>P:</strong> <span class='atr-value-color'>tc</span>.</p></li>
+							<li><p><strong>IMG:</strong> <span class='atr-value-color'>a</span>.</p></li>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<p>And the availables attributes looks like this:</p>
+						<ul>
+							<li><p><strong>Tile</strong> as <span class='atr-value-color'>t</span>.</p></li>
+							<li><p><strong>Alt</strong> as <span class='atr-value-color'>a</span>.</p></li>
+							<li><p><strong>Text Content</strong> as <span class='atr-value-color'>tv</span>.</p></li>
+							<li><p><strong>Value</strong> as <span class='atr-value-color'>v</span>.</p></li>
+							<li><p><strong>Name</strong> as <span class='atr-value-color'>n</span>.</p></li>
+							<li><p><strong>Placeholder</strong> as <span class='atr-value-color'>p</span>.</p></li>
+						</ul>
+					</div>
+				</div>
+
+				<p>The attributes options:</p>
+				
+				<div class="well" data-lpf-container="describe-attributes-1">
+					<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'-'</span></strong></h4><p>Removes all the default values.</p>
+					<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="original_text_sample" data-lpf-attrs="" data-lpf-translate="initial"></span></p>
+					<p><strong>Translated</strong>: <span data-lpf-var="translated_text_sample" data-lpf-attrs="-"></span></p>
+					<button class="btn btn-primary" data-lpf-var="container_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('describe-attributes-1');"></button>
+					<p><i><strong>Note:</strong> The translated string is empty because all the default attributes has been removed.</i></p>
+				</div>
+
+				<div class="well" data-lpf-container="describe-attributes-2">
+					<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'tc'</span></strong></h4><p>Removes all the default values and set the textContent attibute.</p>
+					<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="original_text_sample" data-lpf-attrs="" data-lpf-translate="initial"></span></p>
+					<p><strong>Translated</strong>: <span data-lpf-var="translated_text_sample" data-lpf-attrs="tc"></span></p>
+					<button class="btn btn-primary" data-lpf-var="container_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('describe-attributes-2');"></button>
+				</div>
     			
+    			<div class="well" data-lpf-container="describe-attributes-3">
+					<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'t v'</span></strong></h4><p>Removes all the default values and set the title and value attibute.</p>
+					<p><strong>Original</strong>: <input class="original-sample" data-lpf-var="original_text_sample" data-lpf-attrs="" data-lpf-translate="initial"></input></p>
+					<p><strong>Translated</strong>: <input data-lpf-var="translated_text_sample" data-lpf-attrs="t v"></input></p>
+					<button class="btn btn-primary" data-lpf-var="container_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('describe-attributes-3');"></button>
+				</div>
+
+    			<div class="well text-center" style="color: red;">WORK IN PROGRESS....</div>
     			<!--<div data-lpf-container='forms'>
 					<div class="form-group">
 						<label data-lpf-var="first_label"></label>
 						<input class="form-control" data-lpf-var="username" data-lpf-format="cap" data-lpf-attrs="" type="text"/>
 		        	</div>
-		        	<button class="btn btn-primary" data-lpf-var="the_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('forms');"></button>
+		        	<button class="btn btn-primary" data-lpf-var="generic_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('forms');"></button>
 
 					<h2>Clear default attributes</h2>
 	    			<p>"data-lp-attrs='-'"</p>
@@ -112,13 +195,13 @@
 						<label data-lpf-var="first_label"></label>
 						<input class="form-control" data-lpf-var="username" data-lpf-format="cap" data-lpf-attrs="" type="text"/>
 			        </div>
-			        <button class="btn btn-primary" data-lpf-var="the_button" data-lpf-format="cap" data-lpf-attrs="" onclick="changeLanguage('forms');"></button>
+			        <button class="btn btn-primary" data-lpf-var="generic_button" data-lpf-format="cap" data-lpf-attrs="" onclick="changeLanguage('forms');"></button>
 
 			        <div class="form-group">
 						<label data-lpf-var="first_label" data-lpf-str-format="cap" data-lpf-attrs=""></label>
 						<input class="form-control" data-lpf-var="username" data-lpf-format="cap" data-lpf-attrs="" type="text"/>
 			        </div>
-			        <button class="btn btn-primary" data-lpf-var="the_button" data-lpf-format="cap" data-lpf-attrs="" onclick="changeLanguage('forms');"></button>
+			        <button class="btn btn-primary" data-lpf-var="generic_button" data-lpf-format="cap" data-lpf-attrs="" onclick="changeLanguage('forms');"></button>
 		        </div>-->
 	        </div>
         </div>
@@ -127,34 +210,51 @@
         	var samples = {
         			'EN': en_sample,
         			'ES': es_sample
-        		},
-        		currentSample = 'EN';
+        		};
 
         	window.onload = function () {
-        		LangParser.setDefaultLanguage(currentSample);
-        		LangParser.translateContent(samples[currentSample]);
+        		LangParser.setDefaultLanguage('EN');
+        		LangParser.setDefaultCurrentContainersLang();
+        		LangParser.translateContent(samples[LangParser.currentLang]);
 
-        		showLiteralsSamples();
+        		showOriginalSamples();
         	};
+
+        	function switchLanguage() {
+    			if(LangParser.currentLang === 'EN') {
+    				LangParser.currentLang = 'ES';
+        		} else {
+        			LangParser.currentLang = 'EN';
+        		}
+    		}
 
         	function changeLanguage(containerName) {
 
-        		if(currentSample === 'EN'){
-        			currentSample = 'ES';
+        		if(!containerName || containerName === '') {
+        			switchLanguage();
         		} else {
-        			currentSample = 'EN';
+        			var containers = document.querySelectorAll('[data-lpf-container=' + containerName + ']'),
+        				containerCurrLang = containers[0].dataset.lpfContainerCurrLang;
+                    if(containerCurrLang) {
+                     	LangParser.currentLang = containerCurrLang;
+                    }
+                    switchLanguage();
+                    for(var i = 0; i < containers.length; i++) {
+                		containers[i].dataset.lpfContainerCurrLang = LangParser.currentLang;
+                	}
+        			
         		}
-    			LangParser.translateContent(samples[currentSample], containerName);
+    			LangParser.translateContent(samples[LangParser.currentLang], containerName);
     		}
 
-    		function showLiteralsSamples() {
+    		function showOriginalSamples() {
     			var els = document.getElementsByClassName('original-sample');
     			
     			for(var i = 0; i < els.length; i++) {
     				var name = els[i].dataset.lpfVar;
     				
     				if(name) {
-    					els[i].textContent = samples[currentSample][name];
+    					els[i].textContent = samples[LangParser.currentLang][name];
     				}
     			}
     		}

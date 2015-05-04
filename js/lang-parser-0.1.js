@@ -23,15 +23,17 @@ var LangParser = (function() {
 
         _defaultLang:   'EN',
 
+        currentLang: 'EN',
+
         _defaultAttrsByTagName: {
             'INPUT':    't p n v',
             'A':        't tc',
             'BUTTON':   't tc',
             'LABEL':    't tc',
             'SPAN':     't tc',
-            'IMG':      'a img t',
             'LI':       't tc',
             'P':        'tc',
+            'IMG':      'a'
         },
 
         _langAttrTypes: {
@@ -43,8 +45,11 @@ var LangParser = (function() {
             v:          'value'
         },
 
+        _inititalTranslationsLoaded: false,
+
         setDefaultLanguage: function (lang) {
             this._defaultLang = lang;
+            this.currentLang = this._defaultLang;
         },
 
         langStrFormats: function (type, string) {
@@ -66,6 +71,7 @@ var LangParser = (function() {
             var attrs = el.dataset.lpfAttrs;
             
             if (attrs) {
+                attrs = attrs.trim();
                 if(!attrs.contains('-')) {
                     attrs = attrs.split(' ').filter(function(el){return el.length !== 0});
                 } else {
@@ -74,8 +80,19 @@ var LangParser = (function() {
             } else {
                 attrs = this._defaultAttrsByTagName[el.tagName].split(' ').filter(function(e){return e.length !== 0});
             }
-            console.log(el.dataset.lpfVar, el.dataset.lpfAttrs, attrs);
             return attrs;
+        },
+
+        setDefaultCurrentContainersLang: function() {
+            var containers = document.querySelectorAll('[data-lpf-container]');
+            for(var i = 0; i < containers.length; i++) {
+                containers[i].dataset.lpfContainerCurrLang = LangParser.currentLang;
+            }
+        },
+
+        _getFormat: function (el) {
+            var format = el.dataset.lpfFormat;
+            return (format)?format.trim():'';
         },
 
         translateContent: function(translations, containerName) {
@@ -85,16 +102,20 @@ var LangParser = (function() {
                 var containers = document.querySelectorAll('[data-lpf-container=' + containerName + ']');
                 for(var i = 0; i < containers.length; i++) {
                     var els = containers[i].querySelectorAll('[data-lpf-var]');
-                    elementsToTranslate = elementsToTranslate.concat(Array.prototype.slice.call(els));
+                    for(var j = 0; j < els.length; j++) {
+                        if(!(els[j].dataset.lpfTranslate === 'initial' && this._inititalTranslationsLoaded)) {
+                            elementsToTranslate.push(els[j]);
+                        }
+                    }
                 }
             } else {
                 elementsToTranslate = document.querySelectorAll('[data-lpf-var]');
             }
 
             for (var i = 0; i < elementsToTranslate.length; i++) {
-                var langVar = elementsToTranslate[i].dataset.lpfVar,
+                var langVar = elementsToTranslate[i].dataset.lpfVar.trim(),
                     langAttrs = this._getAttributes(elementsToTranslate[i]),
-                    langStrFormat = elementsToTranslate[i].dataset.lpfFormat,
+                    langStrFormat = this._getFormat(elementsToTranslate[i]),
                     keyTranslated = translations[langVar];
                 if(langAttrs) {
                     if (keyTranslated) {
@@ -111,6 +132,8 @@ var LangParser = (function() {
                     }
                 }
             }
+            this._inititalTranslationsLoaded = true;
+            //console.log(this.currentLang);
         },
     };
 }());
