@@ -8,7 +8,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-		<script src="js/translations.js" charset="utf-8" type="text/javascript"></script>
+		<!--<script src="js/translations.js" charset="utf-8" type="text/javascript"></script>-->
 		<script src="js/lang-parser-0.1.js" charset="utf-8" type="text/javascript"></script>
 		<style type="text/css">
 			/*
@@ -44,8 +44,17 @@
 			.body_color{
 				background-color: #1abc9c;
 			}
-			.spacer {
-			    margin-top: 40px;
+			.top-spacer {
+			    margin-top: 2.5em;
+			}
+			.tab-spacer {
+			    margin-left: 2.5em;
+			}
+			.tab-spacer-2 {
+			    margin-left: 5em;
+			}
+			.tab-spacer-3 {
+			    margin-left: 7.5em;
 			}
 			ul {
 				list-style-type: none;
@@ -57,17 +66,62 @@
 		<div class="container-fluid">
     		<div class="jumbotron col-md-8 col-md-offset-2">
     			<h1 class="title-color">Lang Parser JS Framework</h1>
-    			<p>Sometimes you need to make the translations in client-side, but this could be a tedious work when you need to get element by element and replace all their attributes.</p>
-    			<p>This is the problem that LangParser Javascript Framework (LPF) resolves. <br><strong>LangParser helps you to resolve that tedious work without using other Javascript Frameworks!</strong></p>
+    			<p>Sometimes you need to make the translations in the client-side, but this could be a tedious work getting element by element and replace all their attributes.</p>
+    			<p>This is the problem that LangParser Javascript Framework (LPF) resolves.</p>
+    			<p><strong>LangParser helps you to resolve that tedious work without using other Javascript Frameworks!</strong></p>
 			</div>
 			<div class="jumbotron col-md-8 col-md-offset-2">
-    			<h2 class="title-color">How does it work?</h2>
-    			<div class="well text-center" style="color: red;">TODO: the installation....</div>
+				<h2 class="title-color">How does it work?</h2>
+    			<h3>Installation</h3>
+    			<p>To install the LPF you only need to include the lan-parser-1.0.js into your scripts list:</p>
+    			<div class="well well-sm text-center"><strong>&lt;<span class="tag-color">script</span> <span class='attribute-color'>src=</span><span class="atr-value-color">'js/lang-parser-0.1.js'</span> <span class='attribute-color'>charset=</span><span class="atr-value-color">'utf-8'</span> <span class='attribute-color'>type=</span><span class="atr-value-color">'text/javascript'</span>&gt;&lt;/<span class="tag-color">script</span>&gt;</strong></div>
+
+    			<p>Now, when document is ready, start the LPF as follow:</p>
+				<div class="well well-sm">
+    				window.onload = function () {<br>
+    					<span class="tab-spacer">var samples = {'EN': en_sample, 'ES': es_sample};</span><br>
+
+	        			<span class="tab-spacer">LangParser.setDefaultLanguage('EN');</span><br>
+	        			<i><span class="tab-spacer">//LangParser.setDefaultCurrentContainersLang();</span><br></i>
+	        			<span class="tab-spacer">LangParser.translateContent(translations);</span><br>
+	        		};
+	        	</div>
+	        	<p>The first line defines translation variables into an object depending on its language. Otherwise, the second line sets the default language, while the third one translates the page whole content.</p>
+	        	<p>Note: the commented line is optional, and it will be explained in the <i>container attribute</i> section of this page.</p>
+
+				<p>Be aware that the translations variable has the strings of the specified language (see js/tranlations.js).</p>
+
+				<h3 class="top-spacer">Passing the translations to LPF</h3>
+				<p>The translations could be passed as the previous example or obtained throught a request (locally or from the server).</p>
+
+				<div class="well well-sm">
+					var translations = loadDynamicContent('js/en_sample.json');<br>
+					function loadDynamicContent(url) {<br>
+        				<span class="tab-spacer">var xmlhttp = new XMLHttpRequest();</span><br>
+						<span class="tab-spacer">xmlhttp.onreadystatechange = function() {</span><br>
+				    	<span class="tab-spacer-2">if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {</span><br>
+				        	<span class="tab-spacer-3">return JSON.parse(xmlhttp.responseText);</span><br>
+				    	<span class="tab-spacer-2">}</span><br>
+					<span class="tab-spacer">}</span><br>
+					<span class="tab-spacer">xmlhttp.open("GET", url, true);</span><br>
+					<span class="tab-spacer">xmlhttp.send();</span><br>
+        		}</div>
+
+    			<div class="well text-center" style="color: red;">TODO: working on dynamic load....</div>
+    			<!--
+    				todo's:
+    				- put the samples var inside LPF
+    				- put the function loadDynamicContent inside LPF
+    				- control request errors
+    			-->
 			</div>
-			<div class="jumbotron col-md-8 col-md-offset-2">    			
+			<div class="col-md-8 col-md-offset-2">
+				
+			</div>
+			<div class="jumbotron col-md-8 col-md-offset-2">
     			<section>
     				<h3>The <i>var</i> attribute</h3>
-	    			<p>LPF starts on inlcuding attributes in the elements that you want to translate. It's done by using the <code>dataset</code> property of HMTL5. The elements that will be translated must have the attribute <code>data-lpf-var</code>. The value of this attribute is the same of the key in the translations json file.</p>
+	    			<p>LPF starts on including attributes in the elements that you want to translate. It's done by using the <code>dataset</code> property of HMTL5. The elements that will be translated must have the attribute <code>data-lpf-var</code>. The value of this attribute is the same of the key in the translations json file.</p>
 	    			
 	    			<p>This JSON translations example has the key <strong>username-input</strong> with a value <i>Put here the username:</i></p>
 	    			<div class="well well-sm text-right"><span>{ username-input: 'Put here the username' }</span></div>
@@ -132,32 +186,32 @@
 
 				<div class="row">
 					<div class="col-md-6">
-						<p>The default attributes by tag are:</p>
+						<p>And the availables attributes looks like this:</p>
 						<ul>
-							<li><p><strong>INPUT:</strong> <span class='atr-value-color'>t p n v</span>.</p></li>
-							<li><p><strong>A:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><strong>BUTTON:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><strong>LABEL:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><strong>SPAN:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><strong>LI:</strong> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><strong>P:</strong> <span class='atr-value-color'>tc</span>.</p></li>
-							<li><p><strong>IMG:</strong> <span class='atr-value-color'>a</span>.</p></li>
+							<li><p><i>Title</i> as <span class='atr-value-color'>t</span>.</p></li>
+							<li><p><i>Alt</i> as <span class='atr-value-color'>a</span>.</p></li>
+							<li><p><i>Text Content</i> as <span class='atr-value-color'>tv</span>.</p></li>
+							<li><p><i>Value</i> as <span class='atr-value-color'>v</span>.</p></li>
+							<li><p><i>Name</i> as <span class='atr-value-color'>n</span>.</p></li>
+							<li><p><i>Placeholder</i> as <span class='atr-value-color'>p</span>.</p></li>
 						</ul>
 					</div>
 					<div class="col-md-6">
-						<p>And the availables attributes looks like this:</p>
+						<p>The default attributes by tag are:</p>
 						<ul>
-							<li><p><strong>Tile</strong> as <span class='atr-value-color'>t</span>.</p></li>
-							<li><p><strong>Alt</strong> as <span class='atr-value-color'>a</span>.</p></li>
-							<li><p><strong>Text Content</strong> as <span class='atr-value-color'>tv</span>.</p></li>
-							<li><p><strong>Value</strong> as <span class='atr-value-color'>v</span>.</p></li>
-							<li><p><strong>Name</strong> as <span class='atr-value-color'>n</span>.</p></li>
-							<li><p><strong>Placeholder</strong> as <span class='atr-value-color'>p</span>.</p></li>
+							<li><p><i>INPUT:</i> <span class='atr-value-color'>t p n v</span>.</p></li>
+							<li><p><i>A:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><i>BUTTON:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><i>LABEL:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><i>SPAN:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><i>LI:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+							<li><p><i>P:</i> <span class='atr-value-color'>tc</span>.</p></li>
+							<li><p><i>IMG:</i> <span class='atr-value-color'>a</span>.</p></li>
 						</ul>
 					</div>
 				</div>
 
-				<p>The attributes options:</p>
+				<p>The attribute options:</p>
 				
 				<div class="well" data-lpf-container="describe-attributes-1">
 					<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'-'</span></strong></h4><p>Removes all the default values.</p>
@@ -207,44 +261,57 @@
         </div>
 
         <script type="text/javascript">
-        	var samples = {
-        			'EN': en_sample,
-        			'ES': es_sample
-        		};
+        	var samples = {};
 
         	window.onload = function () {
         		LangParser.setDefaultLanguage('EN');
         		LangParser.setDefaultCurrentContainersLang();
-        		LangParser.translateContent(samples[LangParser.currentLang]);
+        		loadDynamicContent('js/en_sample.json');
 
         		showOriginalSamples();
         	};
 
-        	function switchLanguage() {
+        	function loadDynamicContent(url, containerName) {
+        		var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+				    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				    	//console.log(JSON.parse(xmlhttp.responseText));
+				    	samples = JSON.parse(xmlhttp.responseText);
+				    	LangParser.translateContent(samples, containerName);
+				    }
+				}
+				xmlhttp.open("GET", url, true);
+				xmlhttp.send(null);
+        	}
+
+
+
+
+        	function switchLanguage(containerName) {
     			if(LangParser.currentLang === 'EN') {
     				LangParser.currentLang = 'ES';
+    				loadDynamicContent('js/es_sample.json', containerName);
         		} else {
         			LangParser.currentLang = 'EN';
+        			loadDynamicContent('js/en_sample.json', containerName);
         		}
     		}
 
         	function changeLanguage(containerName) {
 
         		if(!containerName || containerName === '') {
-        			switchLanguage();
+        			switchLanguage(containerName);
         		} else {
         			var containers = document.querySelectorAll('[data-lpf-container=' + containerName + ']'),
         				containerCurrLang = containers[0].dataset.lpfContainerCurrLang;
                     if(containerCurrLang) {
                      	LangParser.currentLang = containerCurrLang;
                     }
-                    switchLanguage();
+                    switchLanguage(containerName);
                     for(var i = 0; i < containers.length; i++) {
                 		containers[i].dataset.lpfContainerCurrLang = LangParser.currentLang;
                 	}
-        			
         		}
-    			LangParser.translateContent(samples[LangParser.currentLang], containerName);
     		}
 
     		function showOriginalSamples() {
@@ -254,7 +321,7 @@
     				var name = els[i].dataset.lpfVar;
     				
     				if(name) {
-    					els[i].textContent = samples[LangParser.currentLang][name];
+    					els[i].textContent = samples[name];
     				}
     			}
     		}

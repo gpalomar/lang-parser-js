@@ -1,0 +1,12 @@
+{
+   "normal_attribute_sample":"this is the text with normal format.",
+   "upper_attribute_sample":"this is the text with upper format.",
+   "lower_attribute_sample":"this is the text with lower format.",
+   "cap_attribute_sample":"this is the text with capitalize format.",
+   "original_text_sample":"This is the original text.",
+   "translated_text_sample":"This is the translated text.",
+   "username":"My name is Mr. X",
+   "first_label":"This my the first label test.",
+   "generic_button":"Translate all!",
+   "container_button":"Translate content!"
+}
