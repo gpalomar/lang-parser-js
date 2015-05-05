@@ -1,0 +1,107 @@
+/*
+USERIFY PALETTE:
+	#3498db - Peter river
+	#e67e22 - Carrot
+	#d35400 - Pumpkin
+	#e74c3c - Alizarin
+	#1abc9c - Turquoise
+*/
+body{
+	text-align: justify;
+}
+ul {
+	list-style-type: none;
+}
+h1.title-color {
+	color: #27ae60!important;
+	color: #d35400!important; /*new*/
+}
+h2.title-color {
+	color: #e67e22!important; /*new*/
+}
+.tag-color {
+	color: #3498db;
+	color: #e74c3c; /*new*/
+}
+.attribute-color {
+	color: #f39c12;
+	color: #3498db; /*new*/
+}
+.atr-value-color {
+	color: #27ae60;
+	color: #e67e22; /*new*/
+}
+.body_color{
+	background-color: #1abc9c;
+}
+.top-spacer {
+    margin-top: 2.5em;
+}
+.tab-spacer {
+    margin-left: 2.5em;
+}
+.tab-spacer-2 {
+    margin-left: 5em;
+}
+.tab-spacer-3 {
+    margin-left: 7.5em;
+}
+#forkongithub a
+{
+	background: #000;
+	color: #fff;
+	font-family: arial,sans-serif;
+	font-size: 1rem;
+	font-weight: bold;
+	line-height: 2rem;
+	padding: 5px 40px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	transition: 0.5s;
+}
+#forkongithub a:hover
+{
+	background: #d35400;
+	color: #fff;
+}
+#forkongithub a::before,#forkongithub a::after
+{
+	background: #fff;
+	content: "";
+	display: block;
+	height: 1px;
+	left: 0;
+	position: absolute;
+	top: 1px;
+	width: 100%;
+}
+#forkongithub a::after
+{
+	bottom: 1px;
+	top: auto;
+}
+#forkongithub
+{
+	display: block;
+	height: 200px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 200px;
+	z-index: 9999;
+}
+#forkongithub a
+{
+	box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	position: absolute;
+	right: -45px;
+	top: 45px;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	width: 200px;
+}

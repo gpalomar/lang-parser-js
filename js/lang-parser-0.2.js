@@ -1,4 +1,4 @@
-/*  Lang Parser JavaScript Framework, version 0.1.0
+/*  Lang Parser JavaScript Framework, version 0.2.0
  *  2015 Guillem Palomar
  *--------------------------------------------------------------------------*/
 

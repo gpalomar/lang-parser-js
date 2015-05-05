@@ -4,68 +4,19 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Lang Parser JS Sample</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 		<!--<script src="js/translations.js" charset="utf-8" type="text/javascript"></script>-->
-		<script src="js/lang-parser-0.1.js" charset="utf-8" type="text/javascript"></script>
-		<style type="text/css">
-			/*
-			USERIFY PALETTE:
-				#3498db - Peter river (blau)
-				#e67e22 - Carrot (taronja)
-				#d35400 - Pumpkin (taronja fort)
-				#e74c3c - Alizarin (vermell gay)
-				#1abc9c - Turquoise
-			*/
-			body{
-				text-align: justify;
-			}
-			h1.title-color {
-				color: #27ae60!important;
-				color: #d35400!important; /*new*/
-			}
-			h2.title-color {
-				color: #e67e22!important; /*new*/
-			}
-			.tag-color {
-				color: #3498db;
-				color: #e74c3c; /*new*/
-			}
-			.attribute-color {
-				color: #f39c12;
-				color: #3498db; /*new*/
-			}
-			.atr-value-color {
-				color: #27ae60;
-				color: #e67e22; /*new*/
-			}
-			.body_color{
-				background-color: #1abc9c;
-			}
-			.top-spacer {
-			    margin-top: 2.5em;
-			}
-			.tab-spacer {
-			    margin-left: 2.5em;
-			}
-			.tab-spacer-2 {
-			    margin-left: 5em;
-			}
-			.tab-spacer-3 {
-			    margin-left: 7.5em;
-			}
-			ul {
-				list-style-type: none;
-			}
-		</style>
+		<script src="js/lang-parser-0.2.js" charset="utf-8" type="text/javascript"></script>
 	</head>
-
 	<body class="body_color">
 		<div class="container-fluid">
-    		<div class="jumbotron col-md-8 col-md-offset-2">
-    			<h1 class="title-color">Lang Parser JS Framework</h1>
+    		<div class="top-spacer jumbotron col-md-8 col-md-offset-2">
+    		<span id="forkongithub"><a href="https://github.com/gpalomar/lang-parser-js">Fork me on GitHub</a></span>
+    			<h1 class="title-color text-left">Lang Parser JS Framework</h1>
     			<p>Sometimes you need to make the translations in the client-side, but this could be a tedious work getting element by element and replace all their attributes.</p>
     			<p>This is the problem that LangParser Javascript Framework (LPF) resolves.</p>
     			<p><strong>LangParser helps you to resolve that tedious work without using other Javascript Frameworks!</strong></p>
@@ -80,7 +31,6 @@
 				<div class="well well-sm">
     				window.onload = function () {<br>
     					<span class="tab-spacer">var samples = {'EN': en_sample, 'ES': es_sample};</span><br>
-
 	        			<span class="tab-spacer">LangParser.setDefaultLanguage('EN');</span><br>
 	        			<i><span class="tab-spacer">//LangParser.setDefaultCurrentContainersLang();</span><br></i>
 	        			<span class="tab-spacer">LangParser.translateContent(translations);</span><br>
