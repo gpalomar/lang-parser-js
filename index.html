@@ -2,215 +2,257 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Lang Parser JS Sample</title>
+
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="css/main.css">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 		<!--<script src="js/translations.js" charset="utf-8" type="text/javascript"></script>-->
 		<script src="js/lang-parser-0.2.js" charset="utf-8" type="text/javascript"></script>
 	</head>
-	<body class="body_color">
-		<div class="container-fluid">
-    		<div class="top-spacer jumbotron col-md-8 col-md-offset-2">
-    		<span id="forkongithub"><a href="https://github.com/gpalomar/lang-parser-js">Fork me on GitHub</a></span>
+
+	<body class="body_color" data-spy="scroll" data-target="#nav-warpper">
+		<div id="header" class="container top-spacer">
+	    	<div class="jumbotron">
+    			<span id="forkongithub"><a href="https://github.com/gpalomar/lang-parser-js">Fork me on GitHub</a></span>
     			<h1 class="title-color text-left">Lang Parser JS Framework</h1>
-    			<p>Sometimes you need to make the translations in the client-side, but this could be a tedious work getting element by element and replace all their attributes.</p>
-    			<p>This is the problem that LangParser Javascript Framework (LPF) resolves.</p>
-    			<p><strong>LangParser helps you to resolve that tedious work without using other Javascript Frameworks!</strong></p>
-			</div>
-			<div class="jumbotron col-md-8 col-md-offset-2">
-				<h2 class="title-color">How does it work?</h2>
-    			<h3>Installation</h3>
-    			<p>To install the LPF you only need to include the lan-parser-1.0.js into your scripts list:</p>
-    			<div class="well well-sm text-center"><strong>&lt;<span class="tag-color">script</span> <span class='attribute-color'>src=</span><span class="atr-value-color">'js/lang-parser-0.1.js'</span> <span class='attribute-color'>charset=</span><span class="atr-value-color">'utf-8'</span> <span class='attribute-color'>type=</span><span class="atr-value-color">'text/javascript'</span>&gt;&lt;/<span class="tag-color">script</span>&gt;</strong></div>
-
-    			<p>Now, when document is ready, start the LPF as follow:</p>
-				<div class="well well-sm">
-    				window.onload = function () {<br>
-    					<span class="tab-spacer">var samples = {'EN': en_sample, 'ES': es_sample};</span><br>
-	        			<span class="tab-spacer">LangParser.setDefaultLanguage('EN');</span><br>
-	        			<i><span class="tab-spacer">//LangParser.setDefaultCurrentContainersLang();</span><br></i>
-	        			<span class="tab-spacer">LangParser.translateContent(translations);</span><br>
-	        		};
-	        	</div>
-	        	<p>The first line defines translation variables into an object depending on its language. Otherwise, the second line sets the default language, while the third one translates the page whole content.</p>
-	        	<p>Note: the commented line is optional, and it will be explained in the <i>container attribute</i> section of this page.</p>
-
-				<p>Be aware that the translations variable has the strings of the specified language (see js/tranlations.js).</p>
-
-				<h3 class="top-spacer">Passing the translations to LPF</h3>
-				<p>The translations could be passed as the previous example or obtained throught a request (locally or from the server).</p>
-
-				<div class="well well-sm">
-					var translations = loadDynamicContent('js/en_sample.json');<br>
-					function loadDynamicContent(url) {<br>
-        				<span class="tab-spacer">var xmlhttp = new XMLHttpRequest();</span><br>
-						<span class="tab-spacer">xmlhttp.onreadystatechange = function() {</span><br>
-				    	<span class="tab-spacer-2">if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {</span><br>
-				        	<span class="tab-spacer-3">return JSON.parse(xmlhttp.responseText);</span><br>
-				    	<span class="tab-spacer-2">}</span><br>
-					<span class="tab-spacer">}</span><br>
-					<span class="tab-spacer">xmlhttp.open("GET", url, true);</span><br>
-					<span class="tab-spacer">xmlhttp.send();</span><br>
-        		}</div>
-
-    			<div class="well text-center" style="color: red;">TODO: working on dynamic load....</div>
-    			<!--
-    				todo's:
-    				- put the samples var inside LPF
-    				- put the function loadDynamicContent inside LPF
-    				- control request errors
-    			-->
-			</div>
-			<div class="col-md-8 col-md-offset-2">
+    			<p class="text-justify">Sometimes you need to make the translations in the client-side, but this could be a tedious work getting element by element and replace all their attributes.</p>
+    			<p class="text-center"><br><strong>LangParser helps you to resolve that tedious work without using other Javascript Frameworks!</strong></p>
+    		</div>
+		</div>
+		<div class="container">
+    		<div class="jumbotron">
+	    		<div class="row">
+	        		<div id="nav-warpper" class="col-xs-3">
+	            		<ul id="nav" class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="125">
+	                		<li class="active"><a href="#section-1">Installation</a></li>
+	                		<li><a href="#section-2">Var attribute</a></li>
+	                		<li><a href="#section-3">Format attribute</a></li>
+	                		<li><a href="#section-4">Translate attribute</a></li>
+	                		<li><a href="#section-5">Container attribute</a></li>
+	                		<li><a href="#section-6">Attrs attribute</a></li>
+	            		</ul>
+	        		</div>
 				
-			</div>
-			<div class="jumbotron col-md-8 col-md-offset-2">
-    			<section>
-    				<h3>The <i>var</i> attribute</h3>
-	    			<p>LPF starts on including attributes in the elements that you want to translate. It's done by using the <code>dataset</code> property of HMTL5. The elements that will be translated must have the attribute <code>data-lpf-var</code>. The value of this attribute is the same of the key in the translations json file.</p>
-	    			
-	    			<p>This JSON translations example has the key <strong>username-input</strong> with a value <i>Put here the username:</i></p>
-	    			<div class="well well-sm text-right"><span>{ username-input: 'Put here the username' }</span></div>
-					<p>So, the input to translate will have the attribute:</p>
-					<div class="well well-sm text-right">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span>/&gt;</strong>
-					</div>
-				</section>
-			</div>
-			<div class="jumbotron col-md-8 col-md-offset-2">
-				<section>
-					<h3>The <i>format</i> attribute</h3>
-					<p>This is an optional attribute that allows you to choose an especific output format for the string translated. The attribute is <code>data-lpf-format</code>.The default values are:</p>
-					<div class="well">
-						<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'normal'</span></strong> (or empty)</h4><p>Keeps the original format of the string.</p>
-						<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="normal_attribute_sample" data-lpf-attrs="-"></span></p>
-						<p><strong>Formatted</strong>: <span data-lpf-var="normal_attribute_sample" data-lpf-attrs=""></span></p>
-					</div>
-					<div class="well">
-						<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'upper'</span></strong></h4><p>Converts the string to uppercase letters.</p>
-						<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="upper_attribute_sample" data-lpf-attrs="-"></span></p>
-						<p><strong>Formatted</strong>: <span data-lpf-var="upper_attribute_sample" data-lpf-format="upper"></span></p>
-					</div>
-					<div class="well">
-						<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'lower'</span></strong></h4><p>Converts the string to lowercase letters.</p>
-						<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="lower_attribute_sample" data-lpf-attrs="-"></span></p>
-						<p><strong>Formatted</strong>: <span data-lpf-var="lower_attribute_sample" data-lpf-format="lower"></span></p>
-					</div>
-					<div class="well">
-						<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'cap'</span></strong></h4><p>Converts the string to a capitalized string.</p>
-						<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="cap_attribute_sample" data-lpf-attrs="-"></span></p>
-						<p><strong>Formatted</strong>: <span data-lpf-var="cap_attribute_sample" data-lpf-format="cap"></span></p>
-					</div>
-					<p><i><strong>Note:</strong> By default, the option set is normal.</i></p>
-					<p>Otherwise, you can customize you'r own behaviour passing a function in the installation.</p>
-					<div class="well text-center" style="color: red;">TODO: user custom regex....</div>
-				</section>
-			</div>
-			<div class="jumbotron col-md-8 col-md-offset-2">
-				<section>
-    				<h3>The <i>translate</i> attribute</h3>
-	    			<p>This attribute allows you to choose if an element must be translated once or every time you change the page language. If you choose once, LPF only translates the first time, on page loaded. The attribute is called <code>data-lpf-translate</code>. The cases are:</p>
+					<div class="col-xs-9">
+						<section id="section-1">
+			    			<h2 class="title-color">Installation</h2>
+			    			<p>To install the LPF you only need to include the lan-parser-1.0.js into your scripts list:</p>
+			    			<div class="well well-sm text-center"><strong>&lt;<span class="tag-color">script</span> <span class='attribute-color'>src=</span><span class="atr-value-color">'js/lang-parser-0.1.js'</span> <span class='attribute-color'>charset=</span><span class="atr-value-color">'utf-8'</span> <span class='attribute-color'>type=</span><span class="atr-value-color">'text/javascript'</span>&gt;&lt;/<span class="tag-color">script</span>&gt;</strong></div>
+
+			    			<p>Now, when document is ready, start the LPF as follow:</p>
+							<div class="well well-sm">
+								<p>
+				    				window.onload = function () {<br>
+				    					<span class="tab-spacer">var samples = {'EN': en_sample, 'ES': es_sample};</span><br>
+					        			<span class="tab-spacer">LangParser.setDefaultLanguage('EN');</span><br>
+					        			<i><span class="tab-spacer">//LangParser.setDefaultCurrentContainersLang();</span><br></i>
+					        			<span class="tab-spacer">LangParser.translateContent(translations);</span><br>
+					        		};
+				        		</p>
+				        	</div>
+				        	<p>The first line defines translation variables into an object depending on its language. Otherwise, the second line sets the default language, while the third one translates the page whole content.</p>
+				        	<p>Note: the commented line is optional, and it will be explained in the <i>container attribute</i> section of this page.</p>
+
+							<p>Be aware that the translations variable has the strings of the specified language (see js/tranlations.js).</p>
+
+							<h3 class="top-spacer">Passing the translations to LPF</h3>
+							<p>The translations could be passed as the previous example or obtained throught a request (locally or from the server).</p>
+
+							<div class="well well-sm">
+								<p>
+									var translations = loadDynamicContent('js/en_sample.json');<br>
+									function loadDynamicContent(url) {<br>
+				        				<span class="tab-spacer">var xmlhttp = new XMLHttpRequest();</span><br>
+										<span class="tab-spacer">xmlhttp.onreadystatechange = function() {</span><br>
+								    	<span class="tab-spacer-2">if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {</span><br>
+								        	<span class="tab-spacer-3">return JSON.parse(xmlhttp.responseText);</span><br>
+								    	<span class="tab-spacer-2">}</span><br>
+									<span class="tab-spacer">}</span><br>
+									<span class="tab-spacer">xmlhttp.open("GET", url, true);</span><br>
+									<span class="tab-spacer">xmlhttp.send();</span><br>
+								</p>
+			        		}</div>
+
+			    			<div class="well text-right text-muted">
+			    				...TODO
+			    				<ol>
+			    					<li>put the samples var inside LPF</li>
+			    					<li>put the function loadDynamicContent inside LPF</li>
+			    					<li>control request errors</li>
+			    				</ol>
+			    			</div>
+		    			</section>
+    					<section id="section-2">
+		    				<h2 class="title-color"><i>var</i> attribute</h2>
+			    			<p>LPF starts on including attributes in the elements that you want to translate. It's done by using the <code>dataset</code> property of HMTL5. The elements that will be translated must have the attribute <code>data-lpf-var</code>. The value of this attribute is the same of the key in the translations json file.</p>
+			    			
+			    			<p>This JSON translations example has the key <strong>username-input</strong> with a value <i>Put here the username:</i></p>
+			    			<div class="well well-sm text-right"><span>{ username-input: 'Put here the username' }</span></div>
+							<p>So, the input to translate will have the attribute:</p>
+							<div class="well well-sm text-right">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span>/&gt;</strong>
+							</div>
+						</section>
+
+
 					
-					<p>This example shows the one time translation using the <i><strong>initial</strong></i> value:</p>
-					<div class="well well-sm">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span> <span class='attribute-color'>data-lpf-translate=</span><span class="atr-value-color">'initital'</span>/&gt;</strong>
-					</div>
+						<section id="section-3">
+							<h2 class="title-color"><i>format</i> attribute</h2>
+							<p>This is an optional attribute that allows you to choose an especific output format for the string translated. The attribute is <code>data-lpf-format</code>.The default values are:</p>
+							<div class="well">
+								<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'normal'</span></strong> (or empty)</h4><p>Keeps the original format of the string.</p>
+								<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="normal_attribute_sample" data-lpf-attrs="-"></span></p>
+								<p><strong>Formatted</strong>: <span data-lpf-var="normal_attribute_sample" data-lpf-attrs=""></span></p>
+							</div>
+							<div class="well">
+								<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'upper'</span></strong></h4><p>Converts the string to uppercase letters.</p>
+								<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="upper_attribute_sample" data-lpf-attrs="-"></span></p>
+								<p><strong>Formatted</strong>: <span data-lpf-var="upper_attribute_sample" data-lpf-format="upper"></span></p>
+							</div>
+							<div class="well">
+								<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'lower'</span></strong></h4><p>Converts the string to lowercase letters.</p>
+								<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="lower_attribute_sample" data-lpf-attrs="-"></span></p>
+								<p><strong>Formatted</strong>: <span data-lpf-var="lower_attribute_sample" data-lpf-format="lower"></span></p>
+							</div>
+							<div class="well">
+								<h4><strong><span class='attribute-color'>data-lpf-format=</span><span class="atr-value-color">'cap'</span></strong></h4><p>Converts the string to a capitalized string.</p>
+								<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="cap_attribute_sample" data-lpf-attrs="-"></span></p>
+								<p><strong>Formatted</strong>: <span data-lpf-var="cap_attribute_sample" data-lpf-format="cap"></span></p>
+							</div>
+							<p><i><strong>Note:</strong> By default, the option set is normal.</i></p>
+							<p>Otherwise, you can customize you'r own behaviour passing a function in the installation.</p>
+							<div class="well text-center" style="color: red;">TODO: user custom regex....</div>
+						</section>
+					
+						<section id="section-4">
+		    				<h2 class="title-color"><i>translate</i> attribute</h2>
+			    			<p>This attribute allows you to choose if an element must be translated once or every time you change the page language. If you choose once, LPF only translates the first time, on page loaded. The attribute is called <code>data-lpf-translate</code>. The cases are:</p>
+							
+							<p>This example shows the one time translation using the <i><strong>initial</strong></i> value:</p>
+							<div class="well well-sm">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span> <span class='attribute-color'>data-lpf-translate=</span><span class="atr-value-color">'initital'</span>/&gt;</strong>
+							</div>
 
-					<p>Otherwise, the <i><strong>always</strong></i> value translates every time:</p>
-					<div class="well well-sm">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span> <span class='attribute-color'>data-lpf-translate=</span><span class="atr-value-color">'always'</span>/&gt;</strong>
+							<p>Otherwise, the <i><strong>always</strong></i> value translates every time:</p>
+							<div class="well well-sm">&nbsp;<strong>&lt;<span class="tag-color">input</span> <span class='attribute-color'>data-lpf-var=</span><span class="atr-value-color">'username-input'</span> <span class='attribute-color'>data-lpf-translate=</span><span class="atr-value-color">'always'</span>/&gt;</strong>
+							</div>
+							<p><i><strong>Note:</strong> By default, the option set is always.</i></p>
+						</section>
+
+						<section id="section-5">
+							<h2 class="title-color"><i>container</i> attribute</h2>
+			    			<div class="well text-right text-muted">
+			    				...TODO
+			    				<ol>
+			    					<li>Explain container attribute</li>
+			    					<li>Examples...</li>
+			    				</ol>
+			    			</div>
+		    			</section>
+					
+						<section id="section-6">
+							<h2 class="title-color"><i>attrs</i> attribute</h2>
+							<p>Another optional feature is the possibility of setting custom attributes to translate. To make translations in the attributes desired, you can modify the attribute <code>data-lpf-attrs</code>.</p>
+
+							<div class="row">
+								<div class="col-md-6">
+									<p>And the availables attributes looks like this:</p>
+									<ul class="list-unstyled">
+										<li><p><i>Title</i> as <span class='atr-value-color'>t</span>.</p></li>
+										<li><p><i>Alt</i> as <span class='atr-value-color'>a</span>.</p></li>
+										<li><p><i>Text Content</i> as <span class='atr-value-color'>tv</span>.</p></li>
+										<li><p><i>Value</i> as <span class='atr-value-color'>v</span>.</p></li>
+										<li><p><i>Name</i> as <span class='atr-value-color'>n</span>.</p></li>
+										<li><p><i>Placeholder</i> as <span class='atr-value-color'>p</span>.</p></li>
+									</ul>
+								</div>
+								<div class="col-md-6">
+									<p>The default attributes by tag are:</p>
+									<ul class="list-unstyled">
+										<li><p><i>INPUT:</i> <span class='atr-value-color'>t p n v</span>.</p></li>
+										<li><p><i>A:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+										<li><p><i>BUTTON:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+										<li><p><i>LABEL:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+										<li><p><i>SPAN:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+										<li><p><i>LI:</i> <span class='atr-value-color'>t tc</span>.</p></li>
+										<li><p><i>P:</i> <span class='atr-value-color'>tc</span>.</p></li>
+										<li><p><i>IMG:</i> <span class='atr-value-color'>a</span>.</p></li>
+									</ul>
+								</div>
+							</div>
+
+							<p>The attribute options:</p>
+							
+							<div class="well" data-lpf-container="describe-attributes-1">
+								<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'-'</span></strong></h4><p>Removes all the default values.</p>
+								<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="original_text_sample" data-lpf-attrs="" data-lpf-translate="initial"></span></p>
+								<p><strong>Translated</strong>: <span data-lpf-var="translated_text_sample" data-lpf-attrs="-"></span></p>
+								<button class="btn btn-primary" data-lpf-var="container_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('describe-attributes-1');"></button>
+								<p><i><strong>Note:</strong> The translated string is empty because all the default attributes has been removed.</i></p>
+							</div>
+
+							<div class="well" data-lpf-container="describe-attributes-2">
+								<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'tc'</span></strong></h4><p>Removes all the default values and set the textContent attibute.</p>
+								<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="original_text_sample" data-lpf-attrs="" data-lpf-translate="initial"></span></p>
+								<p><strong>Translated</strong>: <span data-lpf-var="translated_text_sample" data-lpf-attrs="tc"></span></p>
+								<button class="btn btn-primary" data-lpf-var="container_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('describe-attributes-2');"></button>
+							</div>
+			    			
+			    			<div class="well" data-lpf-container="describe-attributes-3">
+								<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'t v'</span></strong></h4><p>Removes all the default values and set the title and value attibute.</p>
+								<p><strong>Original</strong>: <input class="original-sample" data-lpf-var="original_text_sample" data-lpf-attrs="" data-lpf-translate="initial"></input></p>
+								<p><strong>Translated</strong>: <input data-lpf-var="translated_text_sample" data-lpf-attrs="t v"></input></p>
+								<button class="btn btn-primary" data-lpf-var="container_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('describe-attributes-3');"></button>
+							</div>
+						</section>
 					</div>
-					<p><i><strong>Note:</strong> By default, the option set is always.</i></p>
-				</section>
+				</div>
 			</div>
-
-			<div class="jumbotron col-md-8 col-md-offset-2">
-				<h3>The <i>container</i> attribute</h3>
-    			<div class="well text-center" style="color: red;">TODO: the container attribute....</div>
-			</div>
-			<div class="jumbotron col-md-8 col-md-offset-2">
-
-				<h3>The <i>attrs</i> attribute</h3>
-				<p>Another optional feature is the possibility of setting custom attributes to translate. To make translations in the attributes desired, you can modify the attribute <code>data-lpf-attrs</code>.</p>
-
-				<div class="row">
-					<div class="col-md-6">
-						<p>And the availables attributes looks like this:</p>
-						<ul>
-							<li><p><i>Title</i> as <span class='atr-value-color'>t</span>.</p></li>
-							<li><p><i>Alt</i> as <span class='atr-value-color'>a</span>.</p></li>
-							<li><p><i>Text Content</i> as <span class='atr-value-color'>tv</span>.</p></li>
-							<li><p><i>Value</i> as <span class='atr-value-color'>v</span>.</p></li>
-							<li><p><i>Name</i> as <span class='atr-value-color'>n</span>.</p></li>
-							<li><p><i>Placeholder</i> as <span class='atr-value-color'>p</span>.</p></li>
-						</ul>
-					</div>
-					<div class="col-md-6">
-						<p>The default attributes by tag are:</p>
-						<ul>
-							<li><p><i>INPUT:</i> <span class='atr-value-color'>t p n v</span>.</p></li>
-							<li><p><i>A:</i> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><i>BUTTON:</i> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><i>LABEL:</i> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><i>SPAN:</i> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><i>LI:</i> <span class='atr-value-color'>t tc</span>.</p></li>
-							<li><p><i>P:</i> <span class='atr-value-color'>tc</span>.</p></li>
-							<li><p><i>IMG:</i> <span class='atr-value-color'>a</span>.</p></li>
-						</ul>
-					</div>
-				</div>
-
-				<p>The attribute options:</p>
-				
-				<div class="well" data-lpf-container="describe-attributes-1">
-					<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'-'</span></strong></h4><p>Removes all the default values.</p>
-					<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="original_text_sample" data-lpf-attrs="" data-lpf-translate="initial"></span></p>
-					<p><strong>Translated</strong>: <span data-lpf-var="translated_text_sample" data-lpf-attrs="-"></span></p>
-					<button class="btn btn-primary" data-lpf-var="container_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('describe-attributes-1');"></button>
-					<p><i><strong>Note:</strong> The translated string is empty because all the default attributes has been removed.</i></p>
-				</div>
-
-				<div class="well" data-lpf-container="describe-attributes-2">
-					<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'tc'</span></strong></h4><p>Removes all the default values and set the textContent attibute.</p>
-					<p><strong>Original</strong>: <span class="original-sample" data-lpf-var="original_text_sample" data-lpf-attrs="" data-lpf-translate="initial"></span></p>
-					<p><strong>Translated</strong>: <span data-lpf-var="translated_text_sample" data-lpf-attrs="tc"></span></p>
-					<button class="btn btn-primary" data-lpf-var="container_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('describe-attributes-2');"></button>
-				</div>
-    			
-    			<div class="well" data-lpf-container="describe-attributes-3">
-					<h4><strong><span class='attribute-color'>data-lpf-attrs=</span><span class="atr-value-color">'t v'</span></strong></h4><p>Removes all the default values and set the title and value attibute.</p>
-					<p><strong>Original</strong>: <input class="original-sample" data-lpf-var="original_text_sample" data-lpf-attrs="" data-lpf-translate="initial"></input></p>
-					<p><strong>Translated</strong>: <input data-lpf-var="translated_text_sample" data-lpf-attrs="t v"></input></p>
-					<button class="btn btn-primary" data-lpf-var="container_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('describe-attributes-3');"></button>
-				</div>
-
-    			<div class="well text-center" style="color: red;">WORK IN PROGRESS....</div>
-    			<!--<div data-lpf-container='forms'>
-					<div class="form-group">
-						<label data-lpf-var="first_label"></label>
-						<input class="form-control" data-lpf-var="username" data-lpf-format="cap" data-lpf-attrs="" type="text"/>
-		        	</div>
-		        	<button class="btn btn-primary" data-lpf-var="generic_button" data-lpf-format="cap" data-lpf-attrs="tc" onclick="changeLanguage('forms');"></button>
-
-					<h2>Clear default attributes</h2>
-	    			<p>"data-lp-attrs='-'"</p>
-	    			<div class="form-group">
-						<label data-lpf-var="first_label"></label>
-						<input class="form-control" data-lpf-var="username" data-lpf-format="cap" data-lpf-attrs="" type="text"/>
-			        </div>
-			        <button class="btn btn-primary" data-lpf-var="generic_button" data-lpf-format="cap" data-lpf-attrs="" onclick="changeLanguage('forms');"></button>
-
-			        <div class="form-group">
-						<label data-lpf-var="first_label" data-lpf-str-format="cap" data-lpf-attrs=""></label>
-						<input class="form-control" data-lpf-var="username" data-lpf-format="cap" data-lpf-attrs="" type="text"/>
-			        </div>
-			        <button class="btn btn-primary" data-lpf-var="generic_button" data-lpf-format="cap" data-lpf-attrs="" onclick="changeLanguage('forms');"></button>
-		        </div>-->
-	        </div>
-        </div>
+		</div>
+		<!--<footer class="footer">
+			<div class="container">
+        		<p class="text-muted">The footer.</p>
+      		</div>
+    	</footer>-->
 
         <script type="text/javascript">
+		    $(document).ready(function() {
+		    	
+		        $('#nav-wrapper').height($("#nav").height());
+		        $('#nav').affix({
+		            offset: $("#header").height()
+		        });
+
+		        $('#nav').bind('click', 'ul li a', function(event) {
+		        	console.log("asdasd", $(event.target.hash).offset().top);
+			        $('html, body').animate({
+				        scrollTop: $(event.target.hash).offset().top
+				    }, 1000);
+			    });
+		    });
+
+		    
+
+		    $(window).resize(function(){
+				$('[data-spy="scroll"]').each(function () {
+					var $spy = $(this).scrollspy('refresh');
+				});
+			}).scroll(function () {
+
+				if ($(window).scrollTop() > 0 && $(window).scrollTop() < $("#section-1").offset().top){
+					console.log("1");
+					$('#nav li').first().addClass("active");
+				}
+			});
+
+
+
+
+
         	var samples = {};
 
         	window.onload = function () {

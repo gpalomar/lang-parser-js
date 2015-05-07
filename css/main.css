@@ -9,9 +9,6 @@ USERIFY PALETTE:
 body{
 	text-align: justify;
 }
-ul {
-	list-style-type: none;
-}
 h1.title-color {
 	color: #27ae60!important;
 	color: #d35400!important; /*new*/
@@ -48,8 +45,8 @@ h2.title-color {
 }
 #forkongithub a
 {
-	background: #000;
-	color: #fff;
+	background: grey;
+	color: white;
 	font-family: arial,sans-serif;
 	font-size: 1rem;
 	font-weight: bold;
@@ -62,7 +59,7 @@ h2.title-color {
 }
 #forkongithub a:hover
 {
-	background: #d35400;
+	background: #3498db;
 	color: #fff;
 }
 #forkongithub a::before,#forkongithub a::after
@@ -104,4 +101,88 @@ h2.title-color {
 	transform: rotate(45deg);
 	-webkit-transform: rotate(45deg);
 	width: 200px;
+}
+
+.footer {
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	height: 200px;
+	background-color: #3498db;
+}
+
+
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+.btn-primary{
+	background: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover{
+	color: #fff;
+	background: #3498db;
+	border: 1px solid #3498db;
+}
+
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover {
+    background: none repeat scroll 0 0 #0088cc;
+    border: 1px solid #0088cc;
+    color: #fff;
+}
+
+/* Custom Styles */
+ul.nav-tabs {
+	width: 200px;
+	margin-top: 20px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+ul.nav-tabs li {
+	margin: 0;
+	border-top: 1px solid #ddd;
+}
+ul.nav-tabs li:first-child {
+	border-top: none;
+}
+ul.nav-tabs li a {
+	margin: 0;
+	padding: 8px 16px;
+	border-radius: 0;
+	color: #3498db;
+}
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover {
+	color: #fff;
+	background: #3498db;
+	border: 1px solid #3498db;
+}
+ul.nav-tabs li:first-child a {
+	border-radius: 4px 4px 0 0;
+}
+ul.nav-tabs li:last-child a {
+	border-radius: 0 0 4px 4px;
+}
+ul.nav-tabs.affix {
+	top: 30px; /* Set the top position of pinned element */
 }
